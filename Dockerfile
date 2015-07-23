@@ -10,7 +10,8 @@ RUN apt-get update -y && apt-get install -y \
     python \
     python-setuptools \
     build-essential \
-    python-dev
+    python-dev \
+    vim
 
 RUN easy_install pip
 
