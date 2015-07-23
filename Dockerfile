@@ -1,6 +1,8 @@
-# build image / container
+# boot2docker up
+# boot2docker ip
+
 # docker build -t felix001/djangoapp:1.0 djangoapp/
-# docker run -i -t -p 127.0.0.1:8000:8000 -v /home/djangoapp:/home/djangoapp felix001/djangoapp:1.0
+# docker run -i -t -p 0.0.0.0:8000:8000 -v /home/djangoapp:/home/djangoapp felix001/djangoapp:1.0
 # docker exec -i -t <container id> bash
 
 from ubuntu:14.04
