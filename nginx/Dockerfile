@@ -18,7 +18,7 @@ MAINTAINER Maintaner Ricky Donato
 RUN apt-get update
 
 # Install necessary tools
-RUN apt-get install -y vim wget dialog net-tools 
+RUN apt-get install -y vim wget net-tools 
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
