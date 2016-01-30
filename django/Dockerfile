@@ -34,11 +34,10 @@ COPY $SOURCE_PROJECT $CONTAINER_PROJECT
 # Install Python dependencies
 RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 
-#=============================
 # Port to expose
 EXPOSE 8000
 
 # Copy entrypoint script into the image
-WORKDIR $DOCKYARD_SRVPROJ
-COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#WORKDIR $DOCKYARD_SRVPROJ
+#COPY ./docker-entrypoint.sh /
+#ENTRYPOINT ["/docker-entrypoint.sh"]
