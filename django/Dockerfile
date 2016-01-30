@@ -27,14 +27,14 @@ ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
 # Create application subdirectories
 WORKDIR $CONTAINER_HOME
 RUN mkdir logs
-#VOLUME ["$DOCKYARD_SRVHOME/media/", "$DOCKYARD_SRVHOME/logs/"]
 
-# Copy application source code to SRCDIR
-COPY $SOURCE_PROJECT $DOCKYARD_SRVPROJ
+# Copy application source code to $CONTAINER_PROJECT
+COPY $SOURCE_PROJECT $CONTAINER_PROJECT
 
 # Install Python dependencies
-RUN pip install -r $DOCKYARD_SRVPROJ/requirements.txt
+RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 
+#=============================
 # Port to expose
 EXPOSE 8000
 
