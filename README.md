@@ -1,2 +1,1 @@
-# dockerfiles
-docker files
+A collection of Dockerfiles for creating new docker containers.
