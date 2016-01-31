@@ -2,6 +2,10 @@
 
 PROJECT=<PROJECT> 
 
+# Update permissions
+chmod u+x /opt/docker-entrypoint.sh
+
+
 # Prepare log files and start outputting logs to stdout
 touch /opt/logs/gunicorn.log
 touch /opt/logs/access.log
