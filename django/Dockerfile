@@ -38,6 +38,6 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 EXPOSE 8000
 
 # Copy entrypoint script into the image
-#WORKDIR $DOCKYARD_SRVPROJ
-#COPY ./docker-entrypoint.sh /
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+WORKDIR $CONTAINER_PROJECT
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
