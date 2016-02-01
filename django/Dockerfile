@@ -1,5 +1,6 @@
 ############################################################
 # Dockerfile to build Django Containers
+# 
 # Based on Ubuntu
 ############################################################
 
@@ -43,4 +44,3 @@ EXPOSE 8000
 #ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["python", "manage.py", "runserver", "8000"]
-
