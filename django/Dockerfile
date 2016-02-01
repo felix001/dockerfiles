@@ -37,7 +37,10 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 # Port to expose
 EXPOSE 8000
 
-# Copy entrypoint script into the image
-WORKDIR $CONTAINER_PROJECT
-COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Copy entrypoint script into the image : Gunicorn
+#WORKDIR $CONTAINER_PROJECT
+#COPY ./docker-entrypoint.sh /
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["python", "manage.py", "runserver", "8000"]
+
