@@ -19,8 +19,7 @@ RUN apt-get update && apt-get install -y \
     vim
 
 # Set variables for project name, and where to place files in container.
-ENV PROJECT=XXXX    
-ENV SOURCE_PROJECT=$PROJECT
+ENV PROJECT=<DJANGO_PROJECT>
 ENV CONTAINER_HOME=/opt
 ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
 
@@ -37,9 +36,6 @@ RUN pip install -r $CONTAINER_PROJECT/requirements.txt
 # Port to expose
 EXPOSE 8000
 
-# Copy entrypoint script into the image : Gunicorn
-#WORKDIR $CONTAINER_PROJECT
-#COPY ./docker-entrypoint.sh /
-#ENTRYPOINT ["/docker-entrypoint.sh"]
-
+# Start django webserver
+WORKDIR $CONTAINER_PROJECT
 CMD ["python", "manage.py", "runserver", "8000"]
