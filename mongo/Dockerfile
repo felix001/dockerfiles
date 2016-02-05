@@ -15,7 +15,7 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-or
 
 # Update the default application repository sources list
 RUN apt-get update && apt-get install -y \
-    mongodb-org
+    mongodb-org \
     vim
     
 # Create the MongoDB data directory
