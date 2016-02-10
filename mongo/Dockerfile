@@ -1,6 +1,7 @@
 ############################################################
 # Dockerfile to build Mongo Containers
 # Based on Ubuntu
+# NOT COMPLETE - does not add users
 ############################################################
 
 # Set the base image to Ubuntu
