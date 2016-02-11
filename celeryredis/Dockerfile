@@ -22,8 +22,17 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 RUN pip install celery[redis]
 
+# Add user
+RUN useradd celery -U
+RUN mkdir -p /home/celery
+
+# Set Env's
+ENV CELERY_LOG_LEVEL INFO
+ENV QUEUE <queue>
+ENV APPHOME <app_home>
+
 # Port to expose
 EXPOSE 6379
 
 # Run script
-CMD ["./runscript.sh"]
+CMD ["./runworkers.sh"]
