@@ -1,2 +1,3 @@
 #DRAFT
-yum install net-tools
+yum install net-tools vim sudo
+create mininet user and give sudo
