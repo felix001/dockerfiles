@@ -1,29 +1,17 @@
 ############################################################
 # Dockerfile to build Mongo Containers
 # Based on Ubuntu
-# NOT COMPLETE - does not add users
+# NOTE : does not add users
 ############################################################
 
-# Set the base image to Ubuntu
-FROM ubuntu:14.04
-
-# File Author / Maintainer
-MAINTAINER Maintaner Ricky Donato
-
-# Create repo file
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
-
-# Update the default application repository sources list
-RUN apt-get update && apt-get install -y \
-    mongodb-org \
-    vim
-    
-# Create the MongoDB data directory
-RUN mkdir -p /data/db
-
-# Expose port 27017 from the container to the host
-EXPOSE 27017
-
-# Set usr/bin/mongod as the dockerized entry-point application
+FROM       ubuntu:14.04
+RUN        \
+           apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+           echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+           apt-get update && \
+           apt-get install -y mongodb-org
+VOLUME     ["/var/db"]
+WORKDIR    /var/db
+EXPOSE     27017
 ENTRYPOINT ["/usr/bin/mongod"]
+CMD        ["--auth"]
