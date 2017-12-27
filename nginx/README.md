@@ -1,5 +1,5 @@
-# build new container
+# Build
 sudo docker build -t nginx_img_1 .
 
-# run new container
+# Run
 sudo docker run --name nginx_cont_1 -p 80:80 -i -t nginx_img_1
