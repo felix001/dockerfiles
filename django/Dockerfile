@@ -1,41 +1,10 @@
-############################################################
-# Dockerfile to build Django Containers
-# Based on Ubuntu
-############################################################
-
-# Set the base image to Ubuntu
-FROM ubuntu:14.04
-
-# File Author / Maintainer
-MAINTAINER Maintaner Ricky Donato
-
-# Update the default application repository sources list
-RUN apt-get update && apt-get install -y \
-    python \
-    python-pip \
-    python-setuptools \
-    build-essential \
-    python-dev \
-    vim
-
-# Set variables for project name, and where to place files in container.
-ENV PROJECT=<DJANGO_PROJECT>
-ENV CONTAINER_HOME=/opt
-ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
-
-# Create application subdirectories
-WORKDIR $CONTAINER_HOME
-RUN mkdir logs
-
-# Copy application source code to $CONTAINER_PROJECT
-COPY $SOURCE_PROJECT $CONTAINER_PROJECT
-
-# Install Python dependencies
-RUN pip install -r $CONTAINER_PROJECT/requirements.txt
-
-# Port to expose
+FROM python:3-alpine
+RUN pip install Django==2.2.0
+RUN pip install gunicorn
+RUN django-admin startproject app
+ENV APP_NAME app
+ENV APP_BIND 127.0.0.1:8000
+ENV APP_WRKRS 5
+WORKDIR /app
 EXPOSE 8000
-
-# Start django webserver
-WORKDIR $CONTAINER_PROJECT
-CMD ["python", "manage.py", "runserver", "8000"]
+CMD gunicorn $APP_NAME.wsgi:application --bind $APP_BIND --workers $APP_WRKRS
